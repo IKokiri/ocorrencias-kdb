@@ -1,0 +1,11 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title": "base api doc",
+        "description": "example doc",
+        "contact": {
+            "email": "luiz.mendes@outlook.com"
+        },
+        "version": "1.0.0"
+    }
+}
