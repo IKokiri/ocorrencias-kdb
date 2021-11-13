@@ -8,6 +8,7 @@ router.get('/', (req: Request, res: Response) => {
 
 router.post('/', (req: Request, res: Response) => {
   console.log(req.body);
+  console.log(req.body);
   res.send('ok');
 });
 
