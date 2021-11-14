@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+
+  allmywork_api:
+    image: ${IMAGE_NAME:-allmywork}
+    build:
+        context: ./
+    container_name: ${CONTAINER_NAME:-allmywork}
+    privileged: true
+    restart: always
+    networks:
+        - net-allmywork
+    ports:
+        - "3000:3000"
+    volumes:
+        - ./:/var/allmywork/
+  allmywork_db:
+    container_name: ${CONTAINER_NAME:-allmywork-db}
+    image: mariadb
+    restart: always
+    command: mysqld --max_allowed_packet=30M
+    environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-allmyworkpsw}
+        - MYSQL_DATABASE=${MYSQL_ROOT_DATABASE:-allmywork}
+    networks:
+        - net-allmywork
+    ports:
+        - "3306:3306"
+    volumes:
+        - ./data/db/:/var/lib/mysql
+
+# DEV Network
+networks:
+  net-allmywork:
+    name: net-allmywork
+    driver: bridge

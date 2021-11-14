@@ -3,6 +3,7 @@ import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import router from './infrastructure/routes/routes';
 import swaggerDocs from './api-docs/swagger.json';
+import 'reflect-metadata';
 
 const app = express();
 
