@@ -16,12 +16,12 @@ services:
     volumes:
         - ./:/var/allmywork/
   allmywork_db:
-    container_name: ${CONTAINER_NAME:-allmywork-db}
+    container_name: ${CONTAINER_NAME:-allmyworkdb}
     image: mariadb
     restart: always
     command: mysqld --max_allowed_packet=30M
     environment:
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-allmyworkpsw}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-allmyworkpwd}
         - MYSQL_DATABASE=${MYSQL_ROOT_DATABASE:-allmywork}
     networks:
         - net-allmywork
@@ -29,7 +29,6 @@ services:
         - "3306:3306"
     volumes:
         - ./data/db/:/var/lib/mysql
-
 # DEV Network
 networks:
   net-allmywork:
