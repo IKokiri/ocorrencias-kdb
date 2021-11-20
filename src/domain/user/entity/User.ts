@@ -1,7 +1,7 @@
 import UserRepository from '../../../infrastructure/repository/userRepository';
 
 class User {
-  id!: number;
+  id!: string;
 
   email!: string;
 
@@ -13,24 +13,10 @@ class User {
     this.repo = new UserRepository();
   }
 
-  create = async (): Promise<boolean> => {
-    const user = new UserRepository();
-    user.createUser(this);
-    return true;
-  };
+  create = async (): Promise<boolean> =>
+    !(await this.exist()) ? !!(await this.repo.createUser(this)) : false;
 
-  update = (): boolean => {
-    return true;
-  };
-
-  read = (): Array<User> => {
-    const user = new User();
-    return [user];
-  };
-
-  delete = (): boolean => {
-    return true;
-  };
+  exist = async (): Promise<boolean> => !!(await this.repo.getUser(this.email));
 }
 
 export default User;

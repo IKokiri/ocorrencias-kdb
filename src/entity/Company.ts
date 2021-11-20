@@ -1,13 +1,10 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
-export default class User {
+export default class Company {
   @PrimaryColumn()
   id!: string;
 
   @Column()
-  email!: string;
-
-  @Column()
-  password!: string;
+  name!: string;
 }

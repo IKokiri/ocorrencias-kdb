@@ -9,9 +9,9 @@ user.post('/', async (req: Request, res: Response) => {
     password: req.body.password,
   };
 
-  await createUser(dtoUser);
-
-  res.sendStatus(201);
+  return (await createUser(dtoUser))
+    ? res.sendStatus(201)
+    : res.sendStatus(409);
 });
 
 export default user;
